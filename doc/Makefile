@@ -8,8 +8,10 @@ $(DOC).pdf: $(DOC).tex
 	make bibtex
 	pdflatex $(DOC).tex
 	pdflatex $(DOC).tex
+	make clean
 
 bibtex: $(DOC).bib
 	bibtex $(DOC)
 
 clean:
+	rm -f $(DOC).aux $(DOC).bbl $(DOC).blg $(DOC).log $(DOC).out $(DOC).toc
