@@ -127,7 +127,7 @@
 	vypočítaná celková hmotnosť nájdených predmetov v jednotlivých kategóriách.
 	Nasledovne boli predmety zoskupené do kategórií podľa doby rozkladu.
 	Údaje o dobách rozkladu boli problematickým údajom, pretože sa na rôznych stránkach
-	vyskytujú rôzne údaje. Údaje boli získané z nasledovných stránok a nie sú úplne presné,
+	vyskytujú rôzne údaje. Údaje získané z nasledovných stránok nie sú úplne presné,
 	avšak pre vytvorenie si predstavy o probléme s plastovým odpadom sú dostačujúce.
 	Údaje boli získané z nasledovných stránok \cite{decomposition1}, \cite{decomposition2}, \cite{decomposition3}, \cite{decomposition4}, \cite{decomposition5}.
 	Výsledky sú v tabuľke \ref{tab:1}.
@@ -162,12 +162,35 @@
 
 
 
-	\subsection{Koncepcia - model}
+	\subsection{Popis konceptuálneho modelu}
 
+	Na vstupe modelu - príloha \ref{appendix:petri_net} sa nachádza časovaný prechod
+	s dĺžkou prechodu 1 deň. Za túto časovú jednotku sa na vstupe vygeneruje 1 milión
+	ton plastu. Plast potom môže prejsť do 4 stavov:
+	\begin{itemize}
+		\item pravdepodobnosť 35\% - Plast sa znovu použije a posiela sa na vstup systému.
+		\item pravdepodobnosť 56\% - Plast sa stáva odpadom a môže ďalej prejsť do 5 stavov.
+		\item pravdepodobnosť 8\% - Plast sa spáli a stáva sa rozloženým - opúšťa systém.
+		\item pravdepodobnosť 6\% - Plast sa pošle na recykláciu a môže ďalej prejsť do 3 stavov.
+	\end{itemize}
+	Pokiaľ sa plast stal odpadom prejde do jedného z nasledujúcich stavov:
+	\begin{itemize}
+		\item pravdepodobnosť 5\% - Stáva sa cigaretovým ohorkom poprípade iným drobným odpadom. Odpad sa stáva rozloženým za 5-10 rokov - opúsťa systém.
+		\item pravdepodobnosť 0,4\% - Stáva sa slamkou. Odpad sa stáva rozloženým za exponenciálne 200 rokov - opúsťa systém.
+		\item pravdepodobnosť 75\% - Stáva sa o PET fľašou/vrchnákom poprípade plastovým obalom/vrchnákom. Odpad sa stáva rozloženým za exponenciálne 450 rokov - opúsťa systém.
+		\item pravdepodobnosť 16\% - Stáva sa taškou poripáde plastovým vreckom či fóliou. Odpad sa stáva rozloženým za exponenciálne 20 rokov - opúsťa systém.
+		\item pravdepodobnosť 3,6\% - Stáva sa penovým "take away" obalom na jedlo. Odpad sa stáva rozloženým za exponenciálne 50 rokov - opúšťa systém.
+	\end{itemize}
+	Pokiaľ sa plast pošle na recykláciu prejde do jedného z nasledujúcich stavov::
+	\begin{itemize}
+		\item pravdepodobnosť 20\% - Plast sa spáli a stáva sa rozloženým - opúšťa systém.
+		\item pravdepodobnosť 20\% - Plast sa znovu použije a posiela sa na vstup systému.
+		\item pravdepodobnosť 60\% - Plast sa stáva odpadom a môže ďalej prejsť do 5 stavov.
+	\end{itemize}
 
-	\subsection{Koncepcia - implementácia}
+	\subsection{Forma konceptuálneho modelu}
 
-
+	Model je vyjadrený formou Petriho siete - príloha \ref{appendix:petri_net}.
 
 	%##########################################################################%
 	%##########################################################################%
@@ -195,18 +218,18 @@
 	Simulačný model je nutné pred spustením preložiť príkazom make alebo make run (tento príkaz po preklade spustí program). Simulačný model je možné spustiť ako bez parametrov, tak s nimi, a to v ľubovoľnom poradí. Ak užívateľ nezadá parametre, je program spustený s prednastavenými parametrami.
 
 	\subsubsection{Popis parametrov programu}
-    \begin{itemize}
-        \item \texttt{-y}\quad Počet rokov simulácie [Prednastavená hodnota: 10 rokov]
-        \item \texttt{-r}\quad Percento recyklovaných platov. Maximálna percentuálna hodnota je nastavená na 63\%, pretože recyklácia sa netýka plastu ktorý je znovapoužitý a spálený. [Prednastavená hodnota: 6 (viz \ref{appendix:petri_net})]
-        \item \texttt{-s}\quad Percento úspešne zrecyklovaných plastov(znovupoužitých). Maximálna hodnota je nastavená na 80\% pretože 20\% z recyklovaných plasov sa spáli [Prednastavená hodnota: 20 (viz \ref{appendix:petri_net})]
-        \item \texttt{-i}\quad Percentuálny ročný nárast produkcie plastov [Prednastavená hodnota: 0]
-    \end{itemize}
+	\begin{itemize}
+		\item \texttt{-y}\quad Počet rokov simulácie [Prednastavená hodnota: 10 rokov]
+		\item \texttt{-r}\quad Percento recyklovaných platov. Maximálna percentuálna hodnota je nastavená na 63\%, pretože recyklácia sa netýka plastu ktorý je znovapoužitý a spálený. [Prednastavená hodnota: 6 (viz \ref{appendix:petri_net})]
+		\item \texttt{-s}\quad Percento úspešne zrecyklovaných plastov(znovupoužitých). Maximálna hodnota je nastavená na 80\% pretože 20\% z recyklovaných plasov sa spáli [Prednastavená hodnota: 20 (viz \ref{appendix:petri_net})]
+		\item \texttt{-i}\quad Percentuálny ročný nárast produkcie plastov [Prednastavená hodnota: 0]
+	\end{itemize}
 
 
-    %##########################################################################%
-    %##########################################################################%
-    \section{Podstata simulačných experimentov a ich priebeh}
-    Cielom experimentov bolo overiť verejne dostupné informácie o problamatike plastového odpadu vo svete a navrhnúť vhodný a zrealizovateľný plán ako zastaviť nadmerné znečistenie našej planéty. Cieľom posledného experimentu bolo simuláciou zistiť koľko by približne trvalo rozloženie všetkého plastu ktorý sa aktuálne na planéte vyskytuje.
+	%##########################################################################%
+	%##########################################################################%
+	\section{Podstata simulačných experimentov a ich priebeh}
+	Cielom experimentov bolo overiť verejne dostupné informácie o problamatike plastového odpadu vo svete a navrhnúť vhodný a zrealizovateľný plán ako zastaviť nadmerné znečistenie našej planéty. Cieľom posledného experimentu bolo simuláciou zistiť koľko by približne trvalo rozloženie všetkého plastu ktorý sa aktuálne na planéte vyskytuje.
 
 
 	%##########################################################################%
