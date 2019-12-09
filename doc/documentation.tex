@@ -241,6 +241,8 @@
 	\section{Podstata simulačných experimentov a ich priebeh}
 	Cieľom experimentov bolo overiť verejne dostupné informácie o problamatike plastového odpadu vo svete a navrhnúť vhodný a zrealizovateľný plán ako zastaviť nadmerné znečistenie našej planéty. Cieľom posledného experimentu bolo simuláciou zistiť koľko by približne trvalo rozloženie všetkého plastu ktorý sa aktuálne na planéte vyskytuje.
 
+	\subsection{Experimenty}
+
 	\subsubsection{Experiment 1}
 	Cieľom prvého experimentu bolo overiť verejne dostupné informácie zo stránky \textbf{National Geographic} \cite{plastic_recyclation_NATGEO}. Na tejto stránke je uvedené že ak sa bude produkcia plastov naďalej zvyšovať tempom akým sa zvyšuje, v roku 2050 bude na zemi okolo 12000 miliónov ton plastového odpadu. Podľa zdroja \cite{RCOU} bolo v roku 2018 recyklovaných 25 \% plastového odpadu, preto sme nastavili paramter -r na 25. Takisto predpokladáme že úspešnosť recyklácie je aspoň 30\%.Nárast produkcie plastov sa odhaduje na 3.6\% takže parameter -i sme nastavili na 3.6. V článku National Geographic \cite{plastic_recyclation_NATGEO} je takisto spomenuté, že z 6300 milionov ton vyprodukovanych ludstvom do teraz, sa 79 percent uložilo na skládky alebo sa povaľuje voĺne v prírode. Preto sme pred spustením každého experimentu nastavili počiatočnú hodnotu znečistenia na 5000Mton.
 	\texttt{./ims-projekt -y 50 -r 25 -i 3.6 -s 30}.
@@ -266,9 +268,58 @@
 
 	Ako možno vidieť v tabuľke \ref{tab:2}, simulátor vrátil číslo 13038 čo sa takmer zhoduje s údajom v spomínanom článku. Týmto experimentom sme zároveň testovali validitu modelu, pretože v prvých verziách nám simulačný model vracal hodnotu o 5000 väčšiu čím sme odhalili jeho vadu.
 
-	\subsubsection{Experiment 3 a 4}
-	Experiment číslo 3 spočíva v tom, že sa nastaví percento recyklovaných plastov
-	na maximum teda 62\%.
+	\subsubsection{Experiment 2}
+	Cieľom druhého experimnetu bolo zistiť, či je pri snahe o zredukovanie plastového
+	odpadu výhodnejšie sa zamerať na vyššiu mieru recyklácie odpadu alebo skôr
+	zefektívniť recykláciu odpadu. Budeme simulovať časový úsek 10 rokov.
+
+	Spustenie simulácie s maximálnou mierou recyklácie odpadu -r 62\%: \texttt{./ims-projekt -r 62}.
+
+	\begin{table}[ht]
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+	\hline
+	\multicolumn{2}{|l|}{\textbf{Total produced}}    & 3590              & 100\%  \\ \hline
+	\multicolumn{2}{|l|}{\textbf{Reused}}            & 1539              & 43\%   \\ \hline
+	\multicolumn{2}{|l|}{\textbf{Waste}}             & 1342              & 37\%   \\ \hline
+			  & \textit{Decomposed}                  & 82                &        \\ \hline
+	\multicolumn{2}{|l|}{\textbf{Incinerated}}       & 708               & 20\%   \\ \hline
+	\multicolumn{2}{|l|}{\textbf{Recycled}}          & 2230              & (62\%) \\ \hline
+			  & \textit{Reused}                      & 461               &        \\ \hline
+			  & \textit{Incinerated}                 & 426               &        \\ \hline
+			  & \textit{Wasted}                      & 1342              &        \\ \hline
+	\multicolumn{2}{|l|}{\textbf{Total world waste}} & 6259  milion tons &        \\ \hline
+	\end{tabular}
+	\caption{Experiment 2 - maximálna miera recyklácie}
+	\label{tab:3}
+	\end{table}
+
+	Spustenie simulácie s mierou recyklácie odpadu -r 20\% a s maximálnou efektivitou recyklácie -s 100: \texttt{./ims-projekt -r 20 -s 100}.
+
+	\begin{table}[ht]
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+	\hline
+	\multicolumn{2}{|l|}{\textbf{Total produced}}    & 3590              & 100\%  \\ \hline
+	\multicolumn{2}{|l|}{\textbf{Reused}}            & 1650              & 46\%   \\ \hline
+	\multicolumn{2}{|l|}{\textbf{Waste}}             & 1527              & 43\%   \\ \hline
+			  & \textit{Decomposed}                  & 89                &        \\ \hline
+	\multicolumn{2}{|l|}{\textbf{Incinerated}}       & 413               & 12\%   \\ \hline
+	\multicolumn{2}{|l|}{\textbf{Recycled}}          & 705               & (20\%) \\ \hline
+			  & \textit{Reused}                      & 573               &        \\ \hline
+			  & \textit{Incinerated}                 & 132               &        \\ \hline
+			  & \textit{Wasted}                      & 0                 &        \\ \hline
+	\multicolumn{2}{|l|}{\textbf{Total world waste}} & 6438  milion tons &        \\ \hline
+	\end{tabular}
+	\caption{Experiment 2 - maximálna efektivita recyklácie}
+	\label{tab:4}
+	\end{table}
+
+	Ako možno vidieť v tabuľkách \ref{tab:3} a \ref{tab:4}, simulátor vrátil v tabuľke \ref{tab:3} číslo 6259 a v tabuľke \ref{tab:4} číslo 6438.
+	V prípade časového úseku 10 rokov sa viacej oplatí zamerať sa na maximálnu efektivitu recyklácie odpadu.
+
+	\subsubsection{Experiment 3}
+
 
 	%##########################################################################%
 	%##########################################################################%
