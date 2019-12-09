@@ -3,7 +3,8 @@
 DOC = documentation
 .PHONY: bibtech clean pdfdestroy
 
-$(DOC).pdf: $(DOC).tex
+all: $(DOC).tex
+	make pdfdestroy
 	pdflatex $(DOC).tex
 	make bibtex
 	pdflatex $(DOC).tex

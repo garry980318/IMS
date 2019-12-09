@@ -113,7 +113,7 @@
 	odpadu sa znovu použije, takisto približne 20\% sa spáli a až 60\% zrecyklovaného
 	odpadu ide na skládky.
 
-	Podľa grafov vyskytujúcich sa na portále \textbf{European Parliamentary Research Service Blog} \cite{plastic_graph}
+	Podľa grafov z portálu \textbf{European Parliamentary Research Service Blog} \cite{plastic_graph}
 	je väčšina plastového odpadu tvorená hlavne plastovými obalmi a druhé miesto
 	tvoria rôzne plastové výrobky nespadajúce do katégorií: elektronika,
 	automobilový priemysel ani stavebníctvo. Model sa preto zameriava práve na spomínaný
@@ -145,9 +145,9 @@
 	\label{tab:1}
 	\end{table}
 
-	Nakoniec bola vypočítaná percentuálna zastúpenosť jednotlivých skupín v
-	celkovom množstve vyzbieraného odpadu. Skupina A má zasúpenie 5\%, skupina B 69\%,
-	skupina C 16\% skupina D 10\%.
+	Nakoniec bola vypočítaná percentuálna zastúpenosť jednotlivých kategórií v
+	celkovom množstve vyzbieraného odpadu. Kategória A má zasúpenie 5\%, kategória B 69\%,
+	kategória C 16\% kategória D 10\%.
 
 
 	%##########################################################################%
@@ -188,12 +188,19 @@
 	\subsection{Spustenie simulačného modelu, parametre programu}
 	Simulačný model je nutné pred spustením preložiť príkazom make alebo make run (tento príkaz po preklade spustí program). Simulačný model je možné spustiť ako bez parametrov, tak s nimi, a to v ľubovoľnom poradí. Ak užívateľ nezadá parametre, je program spustený s prednastavenými parametrami.
 
+	\subsubsection{Popis parametrov programu}
+    \begin{itemize}
+        \item \texttt{-y}\quad Počet rokov simulácie [Prednastavená hodnota: 10 rokov]
+        \item \texttt{-r}\quad Percento recyklovaných platov. Maximálna percentuálna hodnota je nastavená na 63%, pretože recyklácia sa netýka plastu ktorý je znovapoužitý a spálený. [Prednastavená hodnota: 6 (viz \ref{appendix:petri_net})]
+        \item \texttt{-s}\quad Percento úspešne zrecyklovaných plastov(znovupoužitých). Maximálna hodnota je nastavená na 80% pretože 20% z recyklovaných plasov sa spáli [Prednastavená hodnota: 20 (viz \ref{appendix:petri_net})]
+        \item \texttt{-i}\quad Percentuálny ročný nárast produkcie plastov [Prednastavená hodnota: 0]
+    \end{itemize}
 
 
-	%##########################################################################%
-	%##########################################################################%
-	\section{Podstata simulačných experimentov a ich priebeh}
-
+    %##########################################################################%
+    %##########################################################################%
+    \section{Podstata simulačných experimentov a ich priebeh}
+    Cielom experimentov bolo overiť verejne dostupné informácie o problamatike plastového odpadu vo svete a navrhnúť vhodný a zrealizovateľný plán ako zastaviť nadmerné znečistenie našej planéty. Cieľom posledného experimentu bolo simuláciou zistiť koľko by približne trvalo rozloženie všetkého plastu ktorý sa aktuálne na planéte vyskytuje.
 
 
 	%##########################################################################%
