@@ -124,7 +124,7 @@ void Experiment(){
         rw += tmp9;
     }
 
-    int totalWordWaste = 6300;
+    int totalWordWaste = 5000; // 6300 * 0.8
     std::cout << totalTons;
     std::cout << "===================================================" << std::endl;
     std::cout << "== Recycling Rate :\t\t" << RR <<"%" <<std::endl;
