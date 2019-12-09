@@ -76,15 +76,14 @@
 	výrobky tvoria najväčšiu časť plastového odpadu. V práci sa vyskytujú rôzne
 	experimenty, ktorých zmyslom je demonštrovať, čo sa stane ak okamžite neznížime
 	produkciu plastového odpadu, ako na množstvo plastového odpadu vplýva recyklácia
-	a iné faktory a ako dlho by trvalo zbaviť sa všetkého plastového odpadu aj keby
-	sa okamžite prestalo s produkciou akýchkoľvek plastových výrobkov.
+	a iné faktory.
 
 	\subsection{Autori, zdroje}
 
 	Projekt vypracovali študenti VUT FIT v Brne Radoslav Grenčík a Róbert Hubinák.
 
 	K vypracovaniu projektu boli využité poznatky a študijné texty z predmetu
-	Modelování a simulace, ktorý sa vyučuje na VUT FIT v Brne. Ako zdroj údajov
+	Modelování a simulace \cite{IMS_slides}, ktorý sa vyučuje na VUT FIT v Brne. Ako zdroj údajov
 	slúžili rôzne štúdie a články na internete a takisto vlastné meranie.
 
 	\subsection{Overovanie validity modelu}
@@ -119,7 +118,7 @@
 	alebo iné jednorázové produkty z plastu.
 
 	\subsection{Použité postupy}
-	Pre vytvorenie simulačného modelu sme využili programovací jazyk C++ a klinžnicu SIMLIB \cite{SIMLIB}. Tieto technológie sú vhodné na riešenie nášho problému. Ďalej boli použité postupy popísané v prednáškach k predmetu Modelování a simulace na VUT FIT v Brne pre vytvorenie Petriho siete a programovanie v SIMLIBE \cite{SIMLIB}.
+	Pre vytvorenie simulačného modelu sme využili programovací jazyk C++ a klinžnicu SIMLIB \cite{SIMLIB}. Tieto technológie sú vhodné na riešenie nášho problému. Ďalej boli použité postupy popísané v prednáškach k predmetu Modelování a simulace \cite{IMS_slides} na VUT FIT v Brne pre vytvorenie Petriho siete a programovanie v SIMLIBE \cite{SIMLIB}.
 
 	\subsection{Popis pôvodu použitých metód a technológii}
 	Boli použité štandardné knižnice jazyka C++ a knižnica SIMLIB \cite{SIMLIB} pre implementovanie Petriho siete v simulačnom modeli. Autormi knižnice SIMLIB \cite{SIMLIB} sú Petr Peringer, David Leska a David Martinek. Ako nástroj pre preklad bol použitý GNU Make \cite{make}.
@@ -137,7 +136,7 @@
 	milión ton plastu na základe ročnej produkcie plastu.
 
 	V článku na portále \textbf{EcoWatch} \cite{beach_cleanup} sú spomenuté množstvá jednotlivých
-	vyzbieraných vecí. Na základe týchto množstiev a vlastného merania - približná hmotnosť
+	vyzbieraných vecí pri medzinárodnom čistení pláží v roku 2018. Na základe týchto množstiev a vlastného merania - približná hmotnosť
 	predmetov bola získaná vážením rôznych zástupcov určitého druhu a spriemerovaním - bola
 	vypočítaná celková hmotnosť nájdených predmetov v jednotlivých kategóriách.
 	Nasledovne boli predmety zoskupené do kategórií podľa doby rozkladu.
@@ -239,7 +238,7 @@
 	%##########################################################################%
 	%##########################################################################%
 	\section{Podstata simulačných experimentov a ich priebeh}
-	Cieľom experimentov bolo overiť verejne dostupné informácie o problamatike plastového odpadu vo svete a navrhnúť vhodný a zrealizovateľný plán ako zastaviť nadmerné znečistenie našej planéty. Experimenty \ref{label:exp2} a \ref{label:exp3} a zameriavajú na otázku, či je vhodnejšie zvýšiť percento recyklovaného odpadu alebo kvalitu recyklácie.
+	Cieľom experimentov bolo overiť verejne dostupné informácie o problamatike plastového odpadu vo svete a navrhnúť vhodný a zrealizovateľný plán ako zastaviť nadmerné znečistenie našej planéty. Experimenty 2 - sekcia \ref{label:exp2} a 3 - sekcia \ref{label:exp3} a zameriavajú na otázku, či je vhodnejšie zvýšiť percento recyklovaného odpadu alebo kvalitu recyklácie.
 
 	\subsection{Experimenty}
 
@@ -269,6 +268,7 @@
 
 	Ako možno vidieť v tabuľke \ref{tab:2}, simulátor vrátil číslo 13038 čo sa takmer zhoduje s údajom v spomínanom článku. Týmto experimentom sme zároveň testovali validitu modelu, pretože v prvých verziách nám simulačný model vracal hodnotu o 5000 väčšiu čím sme odhalili jeho vadu.
 
+	\pagebreak
 	\subsubsection{Experiment 2}
 	\label{label:exp2}
 	Cieľom druhého experimnetu bolo zistiť, či je pri snahe o zredukovanie plastového
@@ -320,6 +320,7 @@
 	Ako možno vidieť v tabuľkách \ref{tab:3} a \ref{tab:4}, simulátor vrátil v tabuľke \ref{tab:3} číslo 6259 a v tabuľke \ref{tab:4} číslo 6438.
 	V prípade časového úseku 10 rokov sa viacej oplatí zamerať sa na maximálnu efektivitu recyklácie odpadu.
 
+	\pagebreak
 	\subsubsection{Experiment 3}
 	\label{label:exp3}
 	Cieľom tretieho experimentu bude overiť čo sa stane ak si zopakujeme experiment číslo 2,
@@ -371,8 +372,10 @@
 	V prípade časového úseku 100 rokov sa taktiež viacej oplatí zamerať sa na maximálnu efektivitu recyklácie odpadu a môžme vidieť že čísla, ktoré vrátil simulátor v tomto experimente sa k sebe nepriblížili, naopak sa od seba viacej vzdialil.
 	Z tohoto môžme vyvodiť záver, že sa do budúcnosti oplatí zamerať na maximálnu mieru recyklácie odpadu.
 
+	\pagebreak
 	\subsubsection{Experiment 4}
-	V tomto experimente sme sa zamerali na to, aký veľký rozdiel spraví 3,6 percentný ročný nárast a úbytok v produkcií plastov. Experimentovali sme s 3 prípadmi. Ako bude situácia vyzerať ak bude produkcia každoročne narastať, klesať a stagnovať. Ako testovacie obdobie sme si zvolili 50 rokov a zvyšné parametre sme nastavili podľa experimentu \ref{label:exp1}. Menili sme len parameter -i \{ -3.6, 1.0, 3.6 \}.
+	\label{label:exp4}
+	V tomto experimente sme sa zamerali na to, aký veľký rozdiel spraví 3,6 percentný ročný nárast a úbytok v produkcií plastov. Experimentovali sme s 3 prípadmi. Ako bude situácia vyzerať ak bude produkcia každoročne narastať, klesať a stagnovať. Ako testovacie obdobie sme si zvolili 50 rokov a zvyšné parametre sme nastavili podľa experimentu 1 - sekcia \ref{label:exp1}. Menili sme len parameter -i \{ -3.6, 1.0, 3.6 \}.
 
 	\begin{table}[ht]
 	\centering
@@ -390,6 +393,7 @@
 	\multicolumn{2}{|l|}{\textbf{Total world waste}} & 24436 milion tons &        \\ \hline
 	\end{tabular}
 	\caption{Výsledok experimentu s rastúcou produkciou}
+	\label{tab:7}
 	\end{table}
 
 	\begin{table}[ht]
@@ -408,6 +412,7 @@
 	\multicolumn{2}{|l|}{\textbf{Total world waste}} & 8358 milion tons &        \\ \hline
 	\end{tabular}
 	\caption{Výsledok experimentu s klesajúcou produkciou}
+	\label{tab:8}
 	\end{table}
 
 	\begin{table}[ht]
@@ -426,14 +431,22 @@
 	\multicolumn{2}{|l|}{\textbf{Total world waste}} & 12196 milion tons &        \\ \hline
 	\end{tabular}
 	\caption{Výsledok experimentu so stagnujúcou produkciou}
+	\label{tab:9}
 	\end{table}
 
-	Ako môžme vidieť, v experimente kde sme ponechali nárast produkcie 3.6\% je celkový odpad 3krát väčší ako v experimente kde sme znižovali produkciu a 2krát väčší ako v experimente so stagnajúcou produkciou. Zisťujeme, že ak by sme udržali produkciu na leveli akom je momentálne ušetrili by sme 12000 miliónov ton plastového odpadu.
+	Ako môžme vidieť, v experimente kde sme ponechali nárast produkcie 3.6\% - tabuľka \ref{tab:7} je celkový odpad 3krát väčší ako v experimente kde sme znižovali produkciu - tabuľka \ref{tab:8} a 2krát väčší ako v experimente so stagnajúcou produkciou - tabuľka \ref{tab:9}. Zisťujeme, že ak by sme udržali produkciu na leveli akom je momentálne ušetrili by sme 12000 miliónov ton plastového odpadu.
 
 	%##########################################################################%
 	%##########################################################################%
 	\section{Zhrnutie simulačných experimentov a záver}
+	Z výsledkov experimentu 1 - sekcia \ref{label:exp1} vyplýva, že náš model je valídny a vracia výsledky odpovedajúce realite.
+	Z experimentu 2 - sekcia \ref{label:exp2} a experimentu 3 - sekcia \ref{label:exp3} vyplýva, že na vyriešenie problému s plastovým odpadom bude dôležité maximalizovať mieru recyklácie
+	a taktiež z experimentu 4 - sekcia \ref{label:exp4} vyplýva, že bude nutné zastaviť ročné zvyšovanie produkcie plastov.
 
+	V rámci projektu vznikol nástroj, ktorý realisticky modeluje kritickú situáciu s prebytkom plastového odpadu
+	na našej planéte. Tento nástroj bol implementovaný v jazyku C++ s použitím knižnice SIMLIB \cite{SIMLIB}.
+	Systém je možné spustiť s rôznymi argumentami a tým pádom vykonávať rôzne experimenty, ktorých výsledky
+	sú vracané vo formáte prehľadných tabuliek.
 
 
 	%##########################################################################%
