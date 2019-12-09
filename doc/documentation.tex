@@ -1,0 +1,143 @@
+% Author: Radoslav Grenčík <xgrenc00@stud.fit.vutbr.cz>
+% Author: Róbert Hubinák <xhubin03@stud.fit.vutbr.cz>
+
+
+\documentclass[a4paper, 11pt]{article}
+
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[left=2cm, top=3cm, text={17cm, 24cm}]{geometry}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage[hyphens]{url}
+\usepackage[unicode, colorlinks, hypertexnames=false, citecolor=blue]{hyperref}
+\usepackage[czech, boxed]{algorithm2e}
+\usepackage[perpage]{footmisc}
+
+
+\begin{document}
+	%##########################################################################%
+	% TITLE PAGE
+	%##########################################################################%
+	\begin{titlepage}
+		\begin{center}
+			\includegraphics[width=0.77 \linewidth]{FIT_logo.pdf}
+
+			\vspace{\stretch{0.382}}
+
+			\Huge{Simulačná štúdia} \\
+			\LARGE{\textbf{Plasty}} \\
+			\Large{Varianta 9: Plasty}
+
+			\vspace{\stretch{0.618}}
+		\end{center}
+
+		\begin{minipage}{0.5 \textwidth}
+			\Large
+			\today
+		\end{minipage}
+		\hfill
+		\begin{minipage}[r]{0.5 \textwidth}
+			\Large
+			\begin{tabular}{ll}
+				Radoslav Grenčík & (xgrenc00) \\
+				Róbert Hubinák & (xhubin03)
+			\end{tabular}
+		\end{minipage}
+	\end{titlepage}
+
+
+
+	%##########################################################################%
+	% TABLE OF CONTENTS
+	%##########################################################################%
+	\clearpage
+	\pagenumbering{roman}
+	\setcounter{page}{1}
+	\tableofcontents
+
+
+
+	%##########################################################################%
+	%##########################################################################%
+	\clearpage
+	\pagenumbering{arabic}
+	\setcounter{page}{1}
+
+	\section{Úvod}
+
+
+
+	\subsection{Autori, zdroje}
+
+	Projekt vypracovali študenti VUT FIT v Brne Radoslav Grenčík a Róbert Hubinák.
+
+	K vypracovaniu projektu boli využité poznatky a študijné texty z predmetu
+	Modelování a simulace, ktorý sa vyučuje na VUT FIT v Brne. Ako zdroj údajov
+	slúžili rôzne webové stránky a takisto vlastné meranie.
+
+	%##########################################################################%
+	%##########################################################################%
+	\section{Rozbor témy a použitých metód/technológií}
+
+
+
+	%##########################################################################%
+	%##########################################################################%
+	\section{Koncepcia metódy, prístupu, modelu}
+
+
+
+	\subsection{Koncepcia - model}
+
+
+	\subsection{Koncepcia - implementácia}
+
+
+
+	%##########################################################################%
+	%##########################################################################%
+	\section{Architektúra simulačného modelu/simulátoru}
+
+
+
+	%##########################################################################%
+	%##########################################################################%
+	\section{Podstata simulačných experimentov a ich priebeh}
+
+
+
+	%##########################################################################%
+	%##########################################################################%
+	\section{Zhrnutie simulačných experimentov a záver}
+
+
+
+	%##########################################################################%
+	% CITATIONS
+	%##########################################################################%
+	\clearpage
+	\bibliographystyle{czechiso}
+	\renewcommand{\refname}{Literatúra}
+	\bibliography{documentation}
+
+
+
+	%##########################################################################%
+	% ADDITIONS
+	%##########################################################################%
+	\clearpage
+	\appendix
+
+
+	\section{Petriho sieť}
+	\label{appendix:petri_net}
+
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=1 \linewidth]{IMSpetri.pdf}
+
+		\caption{Petriho sieť}
+	\end{figure}
+\end{document}
