@@ -136,7 +136,7 @@ void Experiment(){
 
     std::cout << "Total Mtons produced:\t" << (int)total << "\t" << (double )(total/((double )total/100)) << "%"<< std::endl;
     std::cout << "Reused Mtons\t\t" << (int)reused << "\t" << (double )(reused/((double )total/100)) << "%"<< std::endl;
-    std::cout << "Waste Mtons:\t\t" << (int)waste << "\t" << (double )(wasteTons/((double )total/100)) << "%"<<"\tof that:" <<std::endl;
+    std::cout << "Waste Mtons:\t\t" << (int)waste << "\t" << (double )(waste/((double )total/100)) << "%"<<"\tof that:" <<std::endl;
     std::cout << "\tDecomposed:\t" << (int)decomposed<< "\t"<< std::endl;
 
     totalWordWaste += waste;
