@@ -118,6 +118,12 @@
 	v roku 2018 plastový odpad a to hlavne cigaretové ohorky a rôzne plastové obaly
 	alebo iné jednorázové produkty z plastu.
 
+	\subsection{Použité postupy}
+	Pre vytvorenie simulačného modelu sme využili programovací jazyk C++ a klinžnicu SIMLIB \cite{SIMLIB}. Tieto technológie sú vhodné na riešenie nášho problému. Ďalej boli použité postupy popísané v prednáškach k predmetu Modelování a simulace na VUT FIT v Brne pre vytvorenie Petriho siete a programovanie v SIMLIBE \cite{SIMLIB}.
+
+	\subsection{Popis pôvodu použitých metód a technológii}
+	Boli použité štandardné knižnice jazyka C++ a knižnica SIMLIB \cite{SIMLIB} pre implementovanie Petriho siete v simulačnom modeli. Autormi knižnice SIMLIB \cite{SIMLIB} sú Petr Peringer, David Leska a David Martinek. Ako nástroj pre preklad bol použitý GNU Make \cite{make}.
+
 	%##########################################################################%
 	%##########################################################################%
 	\section{Koncepcia metódy, prístupu, modelu}
@@ -141,7 +147,8 @@
 	Údaje boli získané z nasledovných stránok \cite{decomposition1}, \cite{decomposition2}, \cite{decomposition3}, \cite{decomposition4}, \cite{decomposition5}.
 	Výsledky sú v tabuľke \ref{tab:1}.
 
-	\begin{table}[]
+	\begin{table}[ht]
+	\centering
 	\begin{tabular}{llllll}
 	\textbf{}                                                                          & \textbf{MNOŽSTVO} & \textbf{\begin{tabular}[c]{@{}l@{}}KUSOVÁ\\ HMOTNOSŤ\end{tabular}} & \textbf{\begin{tabular}[c]{@{}l@{}}CELKOVÁ\\ HMOTNOSŤ\end{tabular}} & \textbf{\begin{tabular}[c]{@{}l@{}}DOBA\\ ROZKLADU\end{tabular}} & \textbf{KATEGÓRIA} \\ \hline
 	\textbf{\begin{tabular}[c]{@{}l@{}}cigaretový ohorok/\\ drobný odpad\end{tabular}} & 2412151           & 1,4 g                                                              & 3377 kg                                                             & 5-10 rokov                                                       & A                  \\ \hline
@@ -232,8 +239,36 @@
 	%##########################################################################%
 	%##########################################################################%
 	\section{Podstata simulačných experimentov a ich priebeh}
-	Cielom experimentov bolo overiť verejne dostupné informácie o problamatike plastového odpadu vo svete a navrhnúť vhodný a zrealizovateľný plán ako zastaviť nadmerné znečistenie našej planéty. Cieľom posledného experimentu bolo simuláciou zistiť koľko by približne trvalo rozloženie všetkého plastu ktorý sa aktuálne na planéte vyskytuje.
+	Cieľom experimentov bolo overiť verejne dostupné informácie o problamatike plastového odpadu vo svete a navrhnúť vhodný a zrealizovateľný plán ako zastaviť nadmerné znečistenie našej planéty. Cieľom posledného experimentu bolo simuláciou zistiť koľko by približne trvalo rozloženie všetkého plastu ktorý sa aktuálne na planéte vyskytuje.
 
+	\subsubsection{Experiment 1}
+	Cieľom prvého experimentu bolo overiť verejne dostupné informácie zo stránky \textbf{National Geographic} \cite{plastic_recyclation_NATGEO}. Na tejto stránke je uvedené že ak sa bude produkcia plastov naďalej zvyšovať tempom akým sa zvyšuje, v roku 2050 bude na zemi okolo 12000 miliónov ton plastového odpadu. Podľa zdroja \cite{RCOU} bolo v roku 2018 recyklovaných 25 \% plastového odpadu, preto sme nastavili paramter -r na 25. Takisto predpokladáme že úspešnosť recyklácie je aspoň 30\%.Nárast produkcie plastov sa odhaduje na 3.6\% takže parameter -i sme nastavili na 3.6. V článku National Geographic \cite{plastic_recyclation_NATGEO} je takisto spomenuté, že z 6300 milionov ton vyprodukovanych ludstvom do teraz, sa 79 percent uložilo na skládky alebo sa povaľuje voĺne v prírode. Preto sme pred spustením každého experimentu nastavili počiatočnú hodnotu znečistenia na 5000Mton.
+	\texttt{./ims-projekt -y 50 -r 25 -i 3.6 -s 30}.
+
+	\begin{table}[ht]
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+	\hline
+	\multicolumn{2}{|l|}{\textbf{Total produced}}    & 18842             & 100\%  \\ \hline
+	\multicolumn{2}{|l|}{\textbf{Reused}}            & 7088              & 38\%   \\ \hline
+	\multicolumn{2}{|l|}{\textbf{Waste}}             & 9352              & 49\%   \\ \hline
+			  & \textit{Decomposed}                  & 1313              &        \\ \hline
+	\multicolumn{2}{|l|}{\textbf{Incinerated}}       & 2401              & 13\%   \\ \hline
+	\multicolumn{2}{|l|}{\textbf{Recycled}}          & 4745              & (20\%) \\ \hline
+			  & \textit{Reused}                      & 1444              &        \\ \hline
+			  & \textit{Incinerated}                 & 932               &        \\ \hline
+			  & \textit{Wasted}                      & 2368              &        \\ \hline
+	\multicolumn{2}{|l|}{\textbf{Total world waste}} & 13038 milion tons &        \\ \hline
+	\end{tabular}
+	\caption{Výsledok experimentu 1}
+	\label{tab:2}
+	\end{table}
+
+	Ako možno vidieť v tabuľke \ref{tab:2}, simulátor vrátil číslo 13038 čo sa takmer zhoduje s údajom v spomínanom článku. Týmto experimentom sme zároveň testovali validitu modelu, pretože v prvých verziách nám simulačný model vracal hodnotu o 5000 väčšiu čím sme odhalili jeho vadu.
+
+	\subsubsection{Experiment 3 a 4}
+	Experiment číslo 3 spočíva v tom, že sa nastaví percento recyklovaných plastov
+	na maximum teda 62\%.
 
 	%##########################################################################%
 	%##########################################################################%
