@@ -14,6 +14,7 @@
 \usepackage[unicode, colorlinks, hypertexnames=false, citecolor=blue]{hyperref}
 \usepackage[czech, boxed]{algorithm2e}
 \usepackage[perpage]{footmisc}
+\usepackage{hyperref}
 \usepackage{multirow}
 \usepackage[normalem]{ulem}
 \useunder{\uline}{\ul}{}
@@ -90,7 +91,8 @@
 
 	\subsection{Overovanie validity modelu}
 
-
+	Validita modelu bola overovaná experimentovaním a porovnávaním výsledkov s
+	reálnymi nameranými dátami, ktoré boli čerpané z overených zdrojov.
 
 	%##########################################################################%
 	%##########################################################################%
@@ -124,21 +126,26 @@
 	vyzbieraných vecí. Na základe týchto množstiev a vlastného merania - približná hmotnosť
 	predmetov bola získaná vážením rôznych zástupcov určitého druhu a spriemerovaním - bola
 	vypočítaná celková hmotnosť nájdených predmetov v jednotlivých kategóriách.
-	Nasledovne boli predmety zoskupené do kategórií podľa doby rozkladu. Výsledky sú v tabuľke.
+	Nasledovne boli predmety zoskupené do kategórií podľa doby rozkladu.
+	Údaje o dobách rozkladu boli problematickým údajom, pretože sa na rôznych stránkach
+	vyskytujú rôzne údaje. Údaje boli získané z nasledovných stránok a nie sú úplne presné,
+	avšak pre vytvorenie si predstavy o probléme s plastovým odpadom sú dostačujúce.
+	Údaje boli získané z nasledovných stránok.
+	Výsledky sú v tabuľke \ref{tab:1}.
 
 	\begin{table}[]
 	\begin{tabular}{llllll}
-	\textbf{}                                                                          & \textbf{MNOŽSTVO} & \textbf{\begin{tabular}[c]{@{}l@{}}KUSOVÁ\\ HMOTNOSŤ\end{tabular}} & \textbf{\begin{tabular}[c]{@{}l@{}}CELKOVÁ\\ HMOTNOSŤ\end{tabular}} & \textbf{\begin{tabular}[c]{@{}l@{}}DOBA\\ ROZKLADU\end{tabular}} & \textbf{KATEGÓRIA} \\
-	\textbf{\begin{tabular}[c]{@{}l@{}}cigaretový ohorok/\\ drobný odpad\end{tabular}} & 2412151           & 1,4 g                                                              & 3377 kg                                                             & 10-12 rokov                                                      & A                  \\
-	\textbf{PET fľaša}                                                                 & 1569135           & 30 g                                                               & 47074 kg                                                            & 450 rokov                                                        & \multirow{3}{*}{B} \\
+	\textbf{}                                                                          & \textbf{MNOŽSTVO} & \textbf{\begin{tabular}[c]{@{}l@{}}KUSOVÁ\\ HMOTNOSŤ\end{tabular}} & \textbf{\begin{tabular}[c]{@{}l@{}}CELKOVÁ\\ HMOTNOSŤ\end{tabular}} & \textbf{\begin{tabular}[c]{@{}l@{}}DOBA\\ ROZKLADU\end{tabular}} & \textbf{KATEGÓRIA} \\ \hline
+	\textbf{\begin{tabular}[c]{@{}l@{}}cigaretový ohorok/\\ drobný odpad\end{tabular}} & 2412151           & 1,4 g                                                              & 3377 kg                                                             & 5-10 rokov                                                       & A                  \\ \hline
+	\textbf{slamka}                                                                    & 643562            & 0,42 g                                                             & 270 kg                                                              & 200 rokov                                                        & B                  \\ \hline
+	\textbf{PET fľaša}                                                                 & 1569135           & 30 g                                                               & 47074 kg                                                            & 450 rokov                                                        & \multirow{4}{*}{C} \\
 	\textbf{PET vrchnák}                                                               & 1091107           & 2 g                                                                & 2182 kg                                                             & 450 rokov                                                        &                    \\
-	\textbf{slamka}                                                                    & 643562            & 0,42 g                                                             & 270 kg                                                              & 450 rokov                                                        &                    \\
-	\textbf{igelitová taška}                                                           & 757523            & 5,5 g                                                              & 4166 kg                                                             & 200-1000 rokov                                                   & \multirow{3}{*}{C} \\
-	\textbf{plastové vrece}                                                            & 746211            & 5,5 g                                                              & 4104 kg                                                             & 200-1000 rokov                                                   &                    \\
-	\textbf{fólia/drobný obal}                                                         & 1739743           & 2 g                                                                & 3479 kg                                                             & 200-1000 rokov                                                   &                    \\
-	\textbf{\begin{tabular}[c]{@{}l@{}}"take away"\\ box z peny\end{tabular}}          & 580570            & 4,5 g                                                              & 2612 kg                                                             & 50-80 rokov                                                      & \multirow{3}{*}{D} \\
-	\textbf{\begin{tabular}[c]{@{}l@{}}"take away"\\ box z platu\end{tabular}}         & 632874            & 4,5 g                                                              & 2848 kg                                                             & 50-80 rokov                                                      &                    \\
-	\textbf{\begin{tabular}[c]{@{}l@{}}plastový kelímok/\\ vrchnák\end{tabular}}       & 624878            & 3 g                                                                & 1874 kg                                                             & 50-80 rokov                                                      &                    \\
+	\textbf{plastový vrchnák}                                                          & 624878            & 3 g                                                                & 1874 kg                                                             & 450 rokov                                                        &                    \\
+	\textbf{\begin{tabular}[c]{@{}l@{}}"take away"\\ box z plastu\end{tabular}}        & 632874            & 4,5 g                                                              & 2848 kg                                                             & 450 rokov                                                        &                    \\ \hline
+	\textbf{igelitová taška}                                                           & 757523            & 5,5 g                                                              & 4166 kg                                                             & 20 rokov                                                         & \multirow{3}{*}{D} \\
+	\textbf{plastové vrece}                                                            & 746211            & 5,5 g                                                              & 4104 kg                                                             & 20 rokov                                                         &                    \\
+	\textbf{fólia/drobný obal}                                                         & 1739743           & 2 g                                                                & 3479 kg                                                             & 20 rokov                                                         &                    \\ \hline
+	\textbf{\begin{tabular}[c]{@{}l@{}}"take away"\\ box z peny\end{tabular}}          & 580570            & 4,5 g                                                              & 2612 kg                                                             & 50-80 rokov                                                      & E                  \\
 	\multicolumn{3}{r}{{\ul SPOLU}}                                                                                                                                             & \multicolumn{3}{l}{{\ul 71986 kg}}
 	\end{tabular}
 	\caption{Tabuľka top 10 nájdených predmetov a výsledkov meraní}
@@ -146,8 +153,8 @@
 	\end{table}
 
 	Nakoniec bola vypočítaná percentuálna zastúpenosť jednotlivých kategórií v
-	celkovom množstve vyzbieraného odpadu. Kategória A má zasúpenie 5\%, kategória B 69\%,
-	kategória C 16\% kategória D 10\%.
+	celkovej hmotnosti vyzbieraného odpadu. Kategória A má zastúpenie 5\%, kategória B 0,4\%,
+	kategória C 75\%, kategória D 16\% a kategória E 3,6\%.
 
 
 	%##########################################################################%
