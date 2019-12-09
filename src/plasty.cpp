@@ -76,15 +76,56 @@ public:
 
 void Experiment(){
     double startingProduction = 359.0;      // Produkcia plastov v roku 2018
-    for(int i =0; i < Y;i++){               // Y - Pocet rokov simulacie
-        Init(0,DAYSINYEAR);
+    // Y - Pocet rokov simulacie
+        Init(0,DAYSINYEAR*Y);
         delay = DAYSINYEAR/startingProduction;
         (new Production)->Activate();
         Run();
         startingProduction *= yearlyIncrease;       // Rocne zvisenie produkcie
+
+    double total = (double )totalTons / Y;
+    double reused = (double )reusedTons / Y;
+    double waste = (double )wasteTons / Y;
+    double decomposed = (double )decomposedTons / Y;
+    double incinerated = (double )incineratedTons / Y;
+    double rec = (double )recycledTons / Y;
+    double rr= (double )Rreused / Y;
+    double ri = (double )Rincinerated / Y;
+    double rw = (double )Rwasted / Y;
+    double
+    tmp1 = total,
+    tmp2 = reused,
+    tmp3 = waste,
+    tmp4= decomposed,
+    tmp5 = incinerated,
+    tmp6 = rec,
+    tmp7 =rr,
+    tmp8=ri,
+    tmp9=rw;
+    for(int i = 1 ; i < Y;i++){
+        tmp1 *= yearlyIncrease;
+        tmp2 *= yearlyIncrease;
+        tmp3 *= yearlyIncrease;
+        tmp4 *= yearlyIncrease;
+        tmp5 *= yearlyIncrease;
+        tmp6 *= yearlyIncrease;
+        tmp7 *= yearlyIncrease;
+        tmp8 *= yearlyIncrease;
+        tmp9 *= yearlyIncrease;
+
+        total+= tmp1;
+        reused+= tmp2;
+        waste+=tmp3;
+        decomposed+=tmp4;
+        incinerated+=tmp5;
+        rec += tmp6;
+        rr += tmp7;
+        ri += tmp8;
+        rw += tmp9;
     }
 
     int totalWordWaste = 6300;
+    std::cout << totalTons;
     std::cout << "===================================================" << std::endl;
     std::cout << "== Recycling Rate :\t\t" << RR <<"%" <<std::endl;
     std::cout << "== Recycling Succes :\t\t" << RS <<"%"<< std::endl;
@@ -92,18 +133,18 @@ void Experiment(){
     std::cout << "== Yearly de/increase in production :\t" << ((yearlyIncrease -1)*100) <<"%"<< std::endl;
     std::cout << "===================================================" << std::endl;
 
-    std::cout << "Total Mtons produced:\t" <<totalTons << "\t" << (double )(totalTons/((double )totalTons/100)) << "%"<< std::endl;
-    std::cout << "Reused Mtons\t\t" << reusedTons << "\t" << (double )(reusedTons/((double )totalTons/100)) << "%"<< std::endl;
-    std::cout << "Waste Mtons:\t\t" << wasteTons << "\t" << (double )(wasteTons/((double )totalTons/100)) << "%"<<"\tof that:" <<std::endl;
-    std::cout << "\tDecomposed:\t" << decomposedTons<< "\t"<< std::endl;
+    std::cout << "Total Mtons produced:\t" << (int)total << "\t" << (double )(total/((double )total/100)) << "%"<< std::endl;
+    std::cout << "Reused Mtons\t\t" << (int)reused << "\t" << (double )(reused/((double )total/100)) << "%"<< std::endl;
+    std::cout << "Waste Mtons:\t\t" << (int)waste << "\t" << (double )(wasteTons/((double )total/100)) << "%"<<"\tof that:" <<std::endl;
+    std::cout << "\tDecomposed:\t" << (int)decomposed<< "\t"<< std::endl;
 
-    totalWordWaste += wasteTons;
-    totalWordWaste -= decomposedTons;
-    std::cout << "Incinerated Mtons:\t" << incineratedTons << "\t" << (double )(incineratedTons/((double )totalTons/100)) << "%" << std::endl;
-    std::cout << "Recycled Mtons:\t\t" << recycledTons<< "\t(" << (double )(recycledTons/((double )totalTons/100)) << "%)" << "\tof that:" << std::endl;
-    std::cout << "\tReused :\t" << Rreused<< "\t" << std::endl;
-    std::cout << "\tIncinerated :\t" << Rincinerated<< "\t" << std::endl;
-    std::cout << "\tWasted :\t" << Rwasted<< "\t" << std::endl;
+    totalWordWaste += waste;
+    totalWordWaste -= decomposed;
+    std::cout << "Incinerated Mtons:\t" << (int)incinerated << "\t" << (double )(incineratedTons/((double )totalTons/100)) << "%" << std::endl;
+    std::cout << "Recycled Mtons:\t\t" << (int)rec<< "\t(" << (double )(recycledTons/((double )totalTons/100)) << "%)" << "\tof that:" << std::endl;
+    std::cout << "\tReused :\t" << (int)rr<< "\t" << std::endl;
+    std::cout << "\tIncinerated :\t" << (int)ri<< "\t" << std::endl;
+    std::cout << "\tWasted :\t" <<(int) rw<< "\t" << std::endl;
     std::cout << "Total world waste\t"  << totalWordWaste << " milion tons\t" << std::endl;
     std::cout << "===================================================" << std::endl;
 }
