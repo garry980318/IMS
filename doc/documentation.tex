@@ -56,8 +56,7 @@
 	% TABLE OF CONTENTS
 	%##########################################################################%
 	\clearpage
-	\pagenumbering{roman}
-	\setcounter{page}{1}
+	\thispagestyle{empty}
 	\tableofcontents
 
 
@@ -100,11 +99,7 @@
 	Systém modeluje životný cyklus plastu - od jeho vzniku až po rozklad.
 	Podľa článku na portále \textbf{Euractiv} \cite{plastic_Europe} celosvetová produkcia
 	plastu stúpa v roku 2018 bolo vyrobených 359 miliónov ton plastu, čo je 3,2\%
-	nárast oproti roku 2017. Tento údaj bol zjednodušený a v simulačnom modeli sa
-	generuje každý deň 1 milión ton plastu čo je vo výsledku 365 miliónov ton
-	plastu ročne. Priestupné roky zanedbávame pretože pri takomto množstve je tento
-	údaj zanedbateľný. Simulačný model si sám počíta čas, za ktorý sa generuje 1
-	milión ton plastu na základe ročnej produkcie plastu.
+	nárast oproti roku 2017.
 
 	Vyprodukovaný plast môže byť stále použitý, môže sa z neho stať odpad, môže byť
 	spálený alebo zrecyklovaný. Podľa článkov na portáloch \textbf{Our World in Data} \cite{plastic_pollution_stats}
@@ -121,13 +116,27 @@
 	druh plastového odpadu. Podľa článku na portále \textbf{EcoWatch} \cite{beach_cleanup}
 	je práve top 10 nájdených vecí pri medzinárodnom čistení pláží hnutím Ocean Conservancy
 	v roku 2018 plastový odpad a to hlavne cigaretové ohorky a rôzne plastové obaly
-	alebo iné jednorázové produkty z plastu. Takisto sú tu spomenuté množstvá jednotlivých
+	alebo iné jednorázové produkty z plastu.
+
+	%##########################################################################%
+	%##########################################################################%
+	\section{Koncepcia metódy, prístupu, modelu}
+	\label{model:uvod}
+
+	Údaj o celosvetovej produkcii plastu bol zjednodušený a v simulačnom modeli sa
+	generuje každý deň 1 milión ton plastu čo je vo výsledku 365 miliónov ton
+	plastu ročne. V simulačnom modeli sa dá nastaviť ročný prírastok v produkcii
+	plastu. Priestupné roky zanedbávame pretože pri takomto množstve je tento
+	údaj zanedbateľný. Simulačný model si sám počíta čas, za ktorý sa generuje 1
+	milión ton plastu na základe ročnej produkcie plastu.
+
+	V článku na portále \textbf{EcoWatch} \cite{beach_cleanup} sú spomenuté množstvá jednotlivých
 	vyzbieraných vecí. Na základe týchto množstiev a vlastného merania - približná hmotnosť
 	predmetov bola získaná vážením rôznych zástupcov určitého druhu a spriemerovaním - bola
 	vypočítaná celková hmotnosť nájdených predmetov v jednotlivých kategóriách.
 	Nasledovne boli predmety zoskupené do kategórií podľa doby rozkladu.
 	Údaje o dobách rozkladu boli problematickým údajom, pretože sa na rôznych stránkach
-	vyskytujú rôzne údaje. Údaje boli získané z nasledovných stránok a nie sú úplne presné,
+	vyskytujú rôzne údaje. Údaje získané z nasledovných stránok nie sú úplne presné,
 	avšak pre vytvorenie si predstavy o probléme s plastovým odpadom sú dostačujúce.
 	Údaje boli získané z nasledovných stránok \cite{decomposition1}, \cite{decomposition2}, \cite{decomposition3}, \cite{decomposition4}, \cite{decomposition5}.
 	Výsledky sú v tabuľke \ref{tab:1}.
@@ -145,7 +154,7 @@
 	\textbf{plastové vrece}                                                            & 746211            & 5,5 g                                                              & 4104 kg                                                             & 20 rokov                                                         &                    \\
 	\textbf{fólia/drobný obal}                                                         & 1739743           & 2 g                                                                & 3479 kg                                                             & 20 rokov                                                         &                    \\ \hline
 	\textbf{\begin{tabular}[c]{@{}l@{}}"take away"\\ box z peny\end{tabular}}          & 580570            & 4,5 g                                                              & 2612 kg                                                             & 50-80 rokov                                                      & E                  \\
-	\multicolumn{3}{r}{{\ul SPOLU}}                                                                                                                                             & \multicolumn{3}{l}{{\ul 71986 kg}}
+	\multicolumn{3}{r}{{\ul SPOLU:}}                                                                                                                                             & \multicolumn{3}{l}{{\ul 71986 kg}}
 	\end{tabular}
 	\caption{Tabuľka top 10 nájdených predmetov a výsledky meraní}
 	\label{tab:1}
@@ -153,21 +162,38 @@
 
 	Nakoniec bola vypočítaná percentuálna zastúpenosť jednotlivých kategórií v
 	celkovej hmotnosti vyzbieraného odpadu. Kategória A má zastúpenie 5\%, kategória B 0,4\%,
-	kategória C 75\%, kategória D 16\% a kategória E 3,6\%.
+	kategória C 75\%, kategória D 16\% a kategória E 3,6\%. Tieto údaje boli použité pri tvorbe
+	Petriho siete \ref{appendix:petri_net}.
 
+	\subsection{Popis konceptuálneho modelu}
 
-	%##########################################################################%
-	%##########################################################################%
-	\section{Koncepcia metódy, prístupu, modelu}
+	Na vstupe modelu - príloha \ref{appendix:petri_net} sa nachádza časovaný prechod
+	s dĺžkou prechodu 1 deň. Za túto časovú jednotku sa na vstupe vygeneruje 1 milión
+	ton plastu. Plast potom môže prejsť do 4 stavov:
+	\begin{itemize}
+		\item pravdepodobnosť 35\% - Plast sa znovu použije a posiela sa na vstup systému.
+		\item pravdepodobnosť 56\% - Plast sa stáva odpadom a môže ďalej prejsť do 5 stavov.
+		\item pravdepodobnosť 8\% - Plast sa spáli a stáva sa rozloženým - opúšťa systém.
+		\item pravdepodobnosť 6\% - Plast sa pošle na recykláciu a môže ďalej prejsť do 3 stavov.
+	\end{itemize}
+	Pokiaľ sa plast stal odpadom prejde do jedného z nasledujúcich stavov:
+	\begin{itemize}
+		\item pravdepodobnosť 5\% - Stáva sa cigaretovým ohorkom poprípade iným drobným odpadom. Odpad sa stáva rozloženým za 5-10 rokov - opúsťa systém.
+		\item pravdepodobnosť 0,4\% - Stáva sa slamkou. Odpad sa stáva rozloženým za exponenciálne 200 rokov - opúsťa systém.
+		\item pravdepodobnosť 75\% - Stáva sa o PET fľašou/vrchnákom poprípade plastovým obalom/vrchnákom. Odpad sa stáva rozloženým za exponenciálne 450 rokov - opúsťa systém.
+		\item pravdepodobnosť 16\% - Stáva sa taškou poripáde plastovým vreckom či fóliou. Odpad sa stáva rozloženým za exponenciálne 20 rokov - opúsťa systém.
+		\item pravdepodobnosť 3,6\% - Stáva sa penovým "take away" obalom na jedlo. Odpad sa stáva rozloženým za exponenciálne 50 rokov - opúšťa systém.
+	\end{itemize}
+	Pokiaľ sa plast pošle na recykláciu prejde do jedného z nasledujúcich stavov::
+	\begin{itemize}
+		\item pravdepodobnosť 20\% - Plast sa spáli a stáva sa rozloženým - opúšťa systém.
+		\item pravdepodobnosť 20\% - Plast sa znovu použije a posiela sa na vstup systému.
+		\item pravdepodobnosť 60\% - Plast sa stáva odpadom a môže ďalej prejsť do 5 stavov.
+	\end{itemize}
 
+	\subsection{Forma konceptuálneho modelu}
 
-
-	\subsection{Koncepcia - model}
-
-
-	\subsection{Koncepcia - implementácia}
-
-
+	Model je vyjadrený formou Petriho siete - príloha \ref{appendix:petri_net}.
 
 	%##########################################################################%
 	%##########################################################################%
@@ -195,18 +221,18 @@
 	Simulačný model je nutné pred spustením preložiť príkazom make alebo make run (tento príkaz po preklade spustí program). Simulačný model je možné spustiť ako bez parametrov, tak s nimi, a to v ľubovoľnom poradí. Ak užívateľ nezadá parametre, je program spustený s prednastavenými parametrami.
 
 	\subsubsection{Popis parametrov programu}
-    \begin{itemize}
-        \item \texttt{-y}\quad Počet rokov simulácie [Prednastavená hodnota: 10 rokov]
-        \item \texttt{-r}\quad Percento recyklovaných platov. Maximálna percentuálna hodnota je nastavená na 63\%, pretože recyklácia sa netýka plastu ktorý je znovapoužitý a spálený. [Prednastavená hodnota: 6 (viz \ref{appendix:petri_net})]
-        \item \texttt{-s}\quad Percento úspešne zrecyklovaných plastov(znovupoužitých). Maximálna hodnota je nastavená na 80\% pretože 20\% z recyklovaných plasov sa spáli [Prednastavená hodnota: 20 (viz \ref{appendix:petri_net})]
-        \item \texttt{-i}\quad Percentuálny ročný nárast produkcie plastov [Prednastavená hodnota: 0]
-    \end{itemize}
+	\begin{itemize}
+		\item \texttt{-y}\quad Počet rokov simulácie [Prednastavená hodnota: 10 rokov]
+		\item \texttt{-r}\quad Percento recyklovaných plastov. Maximálna percentuálna hodnota je nastavená na 62\%, pretože recyklácia sa netýka plastu ktorý je znovapoužitý a spálený. [Prednastavená hodnota: 6 (viz \ref{appendix:petri_net})]
+		\item \texttt{-s}\quad Percento úspešne zrecyklovaných plastov(znovupoužitých). Maximálna hodnota je nastavená na 80\% pretože 20\% z recyklovaných plasov sa spáli [Prednastavená hodnota: 20 (viz \ref{appendix:petri_net})]
+		\item \texttt{-i}\quad Percentuálny ročný nárast produkcie plastov [Prednastavená hodnota: 0]
+	\end{itemize}
 
 
-    %##########################################################################%
-    %##########################################################################%
-    \section{Podstata simulačných experimentov a ich priebeh}
-    Cielom experimentov bolo overiť verejne dostupné informácie o problamatike plastového odpadu vo svete a navrhnúť vhodný a zrealizovateľný plán ako zastaviť nadmerné znečistenie našej planéty. Cieľom posledného experimentu bolo simuláciou zistiť koľko by približne trvalo rozloženie všetkého plastu ktorý sa aktuálne na planéte vyskytuje.
+	%##########################################################################%
+	%##########################################################################%
+	\section{Podstata simulačných experimentov a ich priebeh}
+	Cielom experimentov bolo overiť verejne dostupné informácie o problamatike plastového odpadu vo svete a navrhnúť vhodný a zrealizovateľný plán ako zastaviť nadmerné znečistenie našej planéty. Cieľom posledného experimentu bolo simuláciou zistiť koľko by približne trvalo rozloženie všetkého plastu ktorý sa aktuálne na planéte vyskytuje.
 
 
 	%##########################################################################%
