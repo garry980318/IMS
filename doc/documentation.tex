@@ -56,8 +56,7 @@
 	% TABLE OF CONTENTS
 	%##########################################################################%
 	\clearpage
-	\pagenumbering{roman}
-	\setcounter{page}{1}
+	\thispagestyle{empty}
 	\tableofcontents
 
 
@@ -100,11 +99,7 @@
 	Systém modeluje životný cyklus plastu - od jeho vzniku až po rozklad.
 	Podľa článku na portále \textbf{Euractiv} \cite{plastic_Europe} celosvetová produkcia
 	plastu stúpa v roku 2018 bolo vyrobených 359 miliónov ton plastu, čo je 3,2\%
-	nárast oproti roku 2017. Tento údaj bol zjednodušený a v simulačnom modeli sa
-	generuje každý deň 1 milión ton plastu čo je vo výsledku 365 miliónov ton
-	plastu ročne. Priestupné roky zanedbávame pretože pri takomto množstve je tento
-	údaj zanedbateľný. Simulačný model si sám počíta čas, za ktorý sa generuje 1
-	milión ton plastu na základe ročnej produkcie plastu.
+	nárast oproti roku 2017.
 
 	Vyprodukovaný plast môže byť stále použitý, môže sa z neho stať odpad, môže byť
 	spálený alebo zrecyklovaný. Podľa článkov na portáloch \textbf{Our World in Data} \cite{plastic_pollution_stats}
@@ -121,7 +116,21 @@
 	druh plastového odpadu. Podľa článku na portále \textbf{EcoWatch} \cite{beach_cleanup}
 	je práve top 10 nájdených vecí pri medzinárodnom čistení pláží hnutím Ocean Conservancy
 	v roku 2018 plastový odpad a to hlavne cigaretové ohorky a rôzne plastové obaly
-	alebo iné jednorázové produkty z plastu. Takisto sú tu spomenuté množstvá jednotlivých
+	alebo iné jednorázové produkty z plastu.
+
+	%##########################################################################%
+	%##########################################################################%
+	\section{Koncepcia metódy, prístupu, modelu}
+	\label{model:uvod}
+
+	Údaj o celosvetovej produkcii plastu bol zjednodušený a v simulačnom modeli sa
+	generuje každý deň 1 milión ton plastu čo je vo výsledku 365 miliónov ton
+	plastu ročne. V simulačnom modeli sa dá nastaviť ročný prírastok v produkcii
+	plastu. Priestupné roky zanedbávame pretože pri takomto množstve je tento
+	údaj zanedbateľný. Simulačný model si sám počíta čas, za ktorý sa generuje 1
+	milión ton plastu na základe ročnej produkcie plastu.
+
+	V článku na portále \textbf{EcoWatch} \cite{beach_cleanup} sú spomenuté množstvá jednotlivých
 	vyzbieraných vecí. Na základe týchto množstiev a vlastného merania - približná hmotnosť
 	predmetov bola získaná vážením rôznych zástupcov určitého druhu a spriemerovaním - bola
 	vypočítaná celková hmotnosť nájdených predmetov v jednotlivých kategóriách.
@@ -145,7 +154,7 @@
 	\textbf{plastové vrece}                                                            & 746211            & 5,5 g                                                              & 4104 kg                                                             & 20 rokov                                                         &                    \\
 	\textbf{fólia/drobný obal}                                                         & 1739743           & 2 g                                                                & 3479 kg                                                             & 20 rokov                                                         &                    \\ \hline
 	\textbf{\begin{tabular}[c]{@{}l@{}}"take away"\\ box z peny\end{tabular}}          & 580570            & 4,5 g                                                              & 2612 kg                                                             & 50-80 rokov                                                      & E                  \\
-	\multicolumn{3}{r}{{\ul SPOLU}}                                                                                                                                             & \multicolumn{3}{l}{{\ul 71986 kg}}
+	\multicolumn{3}{r}{{\ul SPOLU:}}                                                                                                                                             & \multicolumn{3}{l}{{\ul 71986 kg}}
 	\end{tabular}
 	\caption{Tabuľka top 10 nájdených predmetov a výsledky meraní}
 	\label{tab:1}
@@ -153,14 +162,8 @@
 
 	Nakoniec bola vypočítaná percentuálna zastúpenosť jednotlivých kategórií v
 	celkovej hmotnosti vyzbieraného odpadu. Kategória A má zastúpenie 5\%, kategória B 0,4\%,
-	kategória C 75\%, kategória D 16\% a kategória E 3,6\%.
-
-
-	%##########################################################################%
-	%##########################################################################%
-	\section{Koncepcia metódy, prístupu, modelu}
-
-
+	kategória C 75\%, kategória D 16\% a kategória E 3,6\%. Tieto údaje boli použité pri tvorbe
+	Petriho siete \ref{appendix:petri_net}.
 
 	\subsection{Popis konceptuálneho modelu}
 
