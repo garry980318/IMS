@@ -52,13 +52,15 @@ class Plastic : public Process {
         if(wasted){
             double decomposeRandom = Random();
             if(decomposeRandom <= 0.05) {           // Ostatny plast
-                Wait(Uniform(10*DAYSINYEAR,12*DAYSINYEAR));
-            } else if((decomposeRandom > 0.05) && (decomposeRandom <= 0.74)) {  // PET flase,slamky
+                Wait(Uniform(5*DAYSINYEAR,10*DAYSINYEAR));
+            } else if((decomposeRandom > 0.05) && (decomposeRandom <= 0.80)) {  // PET flase,slamky
                 Wait(Exponential(450*DAYSINYEAR));
-            } else if((decomposeRandom > 0.74) && (decomposeRandom <= 0.9)) {   // Tasky, vrecia ...
-                Wait(Uniform(200*DAYSINYEAR,1000*DAYSINYEAR));
-            } else if((decomposeRandom > 0.9) && (decomposeRandom <= 1.0)) {    // Obaly na jedlo
-                Wait(Uniform(50*DAYSINYEAR,80*DAYSINYEAR));
+            } else if((decomposeRandom > 0.80) && (decomposeRandom <= 0.96)) {   // Tasky, vrecia ...
+                Wait(Exponential(20*DAYSINYEAR));
+            } else if((decomposeRandom > 0.96) && (decomposeRandom <= 0.996)) {    // Obaly na jedlo
+                Wait(Exponential(50*DAYSINYEAR));
+            } else if((decomposeRandom > 0.996) && (decomposeRandom <= 1.0)) {    // Slamky
+                Wait(Exponential(200*DAYSINYEAR));
             }
             decomposedTons++;
         }
@@ -125,7 +127,6 @@ void Experiment(){
     }
 
     int totalWordWaste = 5000; // 6300 * 0.8
-    std::cout << totalTons;
     std::cout << "===================================================" << std::endl;
     std::cout << "== Recycling Rate :\t\t" << RR <<"%" <<std::endl;
     std::cout << "== Recycling Succes :\t\t" << RS <<"%"<< std::endl;
