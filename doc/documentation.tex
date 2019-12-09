@@ -14,6 +14,9 @@
 \usepackage[unicode, colorlinks, hypertexnames=false, citecolor=blue]{hyperref}
 \usepackage[czech, boxed]{algorithm2e}
 \usepackage[perpage]{footmisc}
+\usepackage{multirow}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
 
 
 \begin{document}
@@ -85,10 +88,66 @@
 	Modelování a simulace, ktorý sa vyučuje na VUT FIT v Brne. Ako zdroj údajov
 	slúžili rôzne štúdie a články na internete a takisto vlastné meranie.
 
+	\subsection{Overovanie validity modelu}
+
+
+
 	%##########################################################################%
 	%##########################################################################%
 	\section{Rozbor témy a použitých metód/technológií}
 
+	Systém modeluje životný cyklus plastu - od jeho vzniku až po rozklad.
+	Podľa článku na portále \textbf{Euractiv} \cite{plastic_Europe} celosvetová produkcia
+	plastu stúpa v roku 2018 bolo vyrobených 359 miliónov ton plastu, čo je 3,2\%
+	nárast oproti roku 2017. Tento údaj bol zjednodušený a v simulačnom modeli sa
+	generuje každý deň 1 milión ton plastu čo je vo výsledku 365 miliónov ton
+	plastu ročne. Priestupné roky zanedbávame pretože pri takomto množstve je tento
+	údaj zanedbateľný. Simulačný model si sám počíta čas, za ktorý sa generuje 1
+	milión ton plastu na základe ročnej produkcie plastu.
+
+	Vyprodukovaný plast môže byť stále použitý, môže sa z neho stať odpad, môže byť
+	spálený alebo zrecyklovaný. Podľa článkov na portáloch \textbf{Our World in Data} \cite{plastic_pollution_stats}
+	a \textbf{ScienceAdvances} \cite{plastic_sciencemag} je približne 30\% plastu stále použitých, približne 56\%
+	je odpad, približne 8\% je spálených a len približne 6\% je zrecyklovaných.
+	Ďalej je v týchto článkoch spomenutý fakt, že približne 20\% zo zrecyklovaného
+	odpadu sa znovu použije, takisto približne 20\% sa spáli a až 60\% zrecyklovaného
+	odpadu ide na skládky.
+
+	Podľa grafov vyskytujúcich sa na portále \textbf{European Parliamentary Research Service Blog} \cite{plastic_graph}
+	je väčšina plastového odpadu tvorená hlavne plastovými obalmi a druhé miesto
+	tvoria rôzne plastové výrobky nespadajúce do katégorií: elektronika,
+	automobilový priemysel ani stavebníctvo. Model sa preto zameriava práve na spomínaný
+	druh plastového odpadu. Podľa článku na portále \textbf{EcoWatch} \cite{beach_cleanup}
+	je práve top 10 nájdených vecí pri medzinárodnom čistení pláží hnutím Ocean Conservancy
+	v roku 2018 plastový odpad a to hlavne cigaretové ohorky a rôzne plastové obaly
+	alebo iné jednorázové produkty z plastu. Takisto sú tu spomenuté množstvá jednotlivých
+	vyzbieraných vecí. Na základe týchto množstiev a vlastného merania - približná hmotnosť
+	predmetov bola získaná vážením rôznych zástupcov určitého druhu a spriemerovaním - bola
+	vypočítaná celková hmotnosť nájdených predmetov v jednotlivých kategóriách.
+	Nasledovne boli predmety zoskupené do kategórií podľa doby rozkladu. Výsledky sú v tabuľke.
+
+	\begin{table}[]
+	\begin{tabular}{llllll}
+	\textbf{}                                                                          & \textbf{MNOŽSTVO} & \textbf{\begin{tabular}[c]{@{}l@{}}KUSOVÁ\\ HMOTNOSŤ\end{tabular}} & \textbf{\begin{tabular}[c]{@{}l@{}}CELKOVÁ\\ HMOTNOSŤ\end{tabular}} & \textbf{\begin{tabular}[c]{@{}l@{}}DOBA\\ ROZKLADU\end{tabular}} & \textbf{KATEGÓRIA} \\
+	\textbf{\begin{tabular}[c]{@{}l@{}}cigaretový ohorok/\\ drobný odpad\end{tabular}} & 2412151           & 1,4 g                                                              & 3377 kg                                                             & 10-12 rokov                                                      & A                  \\
+	\textbf{PET fľaša}                                                                 & 1569135           & 30 g                                                               & 47074 kg                                                            & 450 rokov                                                        & \multirow{3}{*}{B} \\
+	\textbf{PET vrchnák}                                                               & 1091107           & 2 g                                                                & 2182 kg                                                             & 450 rokov                                                        &                    \\
+	\textbf{slamka}                                                                    & 643562            & 0,42 g                                                             & 270 kg                                                              & 450 rokov                                                        &                    \\
+	\textbf{igelitová taška}                                                           & 757523            & 5,5 g                                                              & 4166 kg                                                             & 200-1000 rokov                                                   & \multirow{3}{*}{C} \\
+	\textbf{plastové vrece}                                                            & 746211            & 5,5 g                                                              & 4104 kg                                                             & 200-1000 rokov                                                   &                    \\
+	\textbf{fólia/drobný obal}                                                         & 1739743           & 2 g                                                                & 3479 kg                                                             & 200-1000 rokov                                                   &                    \\
+	\textbf{\begin{tabular}[c]{@{}l@{}}"take away"\\ box z peny\end{tabular}}          & 580570            & 4,5 g                                                              & 2612 kg                                                             & 50-80 rokov                                                      & \multirow{3}{*}{D} \\
+	\textbf{\begin{tabular}[c]{@{}l@{}}"take away"\\ box z platu\end{tabular}}         & 632874            & 4,5 g                                                              & 2848 kg                                                             & 50-80 rokov                                                      &                    \\
+	\textbf{\begin{tabular}[c]{@{}l@{}}plastový kelímok/\\ vrchnák\end{tabular}}       & 624878            & 3 g                                                                & 1874 kg                                                             & 50-80 rokov                                                      &                    \\
+	\multicolumn{3}{r}{{\ul SPOLU}}                                                                                                                                             & \multicolumn{3}{l}{{\ul 71986 kg}}
+	\end{tabular}
+	\caption{Tabuľka top 10 nájdených predmetov a výsledkov meraní}
+	\label{tab:1}
+	\end{table}
+
+	Nakoniec bola vypočítaná percentuálna zastúpenosť jednotlivých skupín v
+	celkovom množstve vyzbieraného odpadu. Skupina A má zasúpenie 5\%, skupina B 69\%,
+	skupina C 16\% skupina D 10\%.
 
 
 	%##########################################################################%
@@ -107,6 +166,27 @@
 	%##########################################################################%
 	%##########################################################################%
 	\section{Architektúra simulačného modelu/simulátoru}
+	\label{architecture:uvod}
+	Hlavnými komponentami implementačnej časti projektu sú triedy \texttt{Production}
+	a \texttt{Plastic}. Trieda \texttt{Production} dedí od tiedy \texttt{Event}
+	a stará sa o generovanie a aktiváciu procesov ktoré spracovávame. Životný cyklus
+	týchto procesov je popísaný v triede \texttt{Plastic}. Program takisto obsahuje triedu
+	\texttt{ArgumentParser}, ktorá sa stará o spracovanie argumentov programu.
+
+	\subsection{Mapovanie konceptuálneho modelu do simulačného modelu}
+	Ako už bolo spomenuté v úvode kapitoly \ref{architecture:uvod} o generovanie procesov
+	vstupujúcich do systému sa stará trieda \texttt{Production}. Jeden tento proces predstavuje
+	jeden milión ton plastu. Po vygrenerovaní je proces rozdelený do jednej zo 4 vetiev, ktoré
+	predstavujú stavy popísané v modeli \ref{appendix:petri_net} (recyklovaný,skládka...). Rozdelenie
+	je vo forme intervalov, ktoré zodpovedajú percentám v modeli. O náhodnosť rozdelenia sa stará
+	funkcia \texttt{Random()}. Po tom čo prejde proces do tohto stavu, inkrementuje sa celočíselná premenná
+	ktorá predstavu množstvo plastu v danom stave. Ak prejde proces do stavu recyklácie je následne
+	opäť náhodne rozdelení do stavov podľa rozdelenia v modeli. Procesy ktoré sa dostali do stavu skládka
+	sú takisto rozdelené a podľa kategórie, do ktorej spadajú im je nastavené čakanie funkciou \texttt{Wait()}.
+	Ak takýto čakajúci proces stihne skončiť pred skončením simulácie považujeme ho za rozložený.
+
+	\subsection{Spustenie simulačného modelu, parametre programu}
+	Simulačný model je nutné pred spustením preložiť príkazom make alebo make run (tento príkaz po preklade spustí program). Simulačný model je možné spustiť ako bez parametrov, tak s nimi, a to v ľubovoľnom poradí. Ak užívateľ nezadá parametre, je program spustený s prednastavenými parametrami.
 
 
 

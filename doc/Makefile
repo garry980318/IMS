@@ -1,7 +1,7 @@
 # Author: Radoslav Grenčík <xgrenc00@stud.fit.vutbr.cz>
 
 DOC = documentation
-.PHONY: bibtech clean
+.PHONY: bibtech clean pdfdestroy
 
 $(DOC).pdf: $(DOC).tex
 	pdflatex $(DOC).tex
@@ -15,3 +15,6 @@ bibtex: $(DOC).bib
 
 clean:
 	rm -f $(DOC).aux $(DOC).bbl $(DOC).blg $(DOC).log $(DOC).out $(DOC).toc
+
+pdfdestroy:
+	rm -f $(DOC).pdf
